@@ -11,7 +11,6 @@ root.render(
   <React.StrictMode>
     <Login/>
     <BrowserRouter>
-    <Contraseña/>
     </BrowserRouter>
   </React.StrictMode>
 );
