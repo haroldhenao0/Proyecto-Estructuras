@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import '../CSS/Contraseña.css';
 
-function Login() {
+function Contraseña() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -44,4 +44,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Contraseña;

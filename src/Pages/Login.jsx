@@ -50,6 +50,28 @@ const Login = () => {
   };
 
   return (
+
+    <div className="login">
+      <h1>Iniciar sesión</h1>
+      <div className="form">
+        <label htmlFor="email">Correo electrónico:</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="password">Contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleEmailLogin}>Iniciar sesión con correo electrónico</button>
+        <button onClick={handleGoogleLogin}>Iniciar sesión con Google</button>
+        <button onClick={handleFacebookLogin}>Iniciar sesión con Facebook</button>
+
     <div className="login-container">
     <div className="login">
     <div className="title-login">
@@ -61,6 +83,7 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
 
+export default Login;
 export default Login;
