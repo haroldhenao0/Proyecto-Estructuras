@@ -1,66 +1,55 @@
-import React, { useState } from "react";
-import firebase from "firebase/compat/app";
-import "firebase/auth";
-import '../CSS/Login.css';
-import { initializeApp } from "firebase/app";
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import {useAuth} from '../context/authContext';
+import '../CSS/Contraseña.css';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCI7mmdYk7Wkv1RcoDy7gnhCkuAIcC-8Ss",
-  authDomain: "uaohub.firebaseapp.com",
-  projectId: "uaohub",
-  storageBucket: "uaohub.appspot.com",
-  messagingSenderId: "287422487472",
-  appId: "1:287422487472:web:9e9c1c14b217b2e5c31475",
-  measurementId: "G-F28SFNBETW"
-};
+export function Login() {
+  const [username, setUser] = useState({
+    Username: "",
+    Password: "",
+  });
+  
 
-firebase.initializeApp(firebaseConfig);
+  const {singup}= useAuth()
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleChange = ({target: {name, value}}) =>
+    setUser({...username, [name]: value })
 
-  const handleEmailLogin = async () => {
-    try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
-      console.log("Successfully logged in with email and password.");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const handleLogin = (event) => {
+    event.preventDefault();
+    singup(username.Username, username.Password)
 
-  const handleGoogleLogin = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    try {
-      await firebase.auth().signInWithPopup(provider);
-      console.log("Successfully logged in with Google.");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleFacebookLogin = async () => {
-    const provider = new firebase.auth.FacebookAuthProvider();
-    try {
-      await firebase.auth().signInWithPopup(provider);
-      console.log("Successfully logged in with Facebook.");
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   return (
     <div className="login-container">
-    <div className="login">
-    <div className="title-login">
-      <h1>Log in</h1>
-      </div>
-        <button onClick={handleGoogleLogin}>Login with google</button>
-        <button onClick={handleFacebookLogin}>Login with Facebook</button>
-        <button onClick={handleEmailLogin}>Login with e-mail</button>
-      </div>
+      <form className="login-form" onSubmit={handleLogin}>
+        <div className="title-login">
+        <h2 className="login-title">Log in with E-mail</h2>
+        </div>
+        <div className="form-group">
+          <label htmlFor="username">E-mail</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder='uaohub@uao.edu.co'
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder='**********'
+            onChange={handleChange}
+          />
+        </div>
+        <button className="login-button" type="submit">Log in</button>
+        <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+      </form>
     </div>
   );
-};
-
-export default Login;
+}
