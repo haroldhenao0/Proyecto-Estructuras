@@ -50,6 +50,7 @@ const Login = () => {
   };
 
   return (
+
     <div className="login">
       <h1>Iniciar sesión</h1>
       <div className="form">
@@ -70,9 +71,19 @@ const Login = () => {
         <button onClick={handleEmailLogin}>Iniciar sesión con correo electrónico</button>
         <button onClick={handleGoogleLogin}>Iniciar sesión con Google</button>
         <button onClick={handleFacebookLogin}>Iniciar sesión con Facebook</button>
+
+    <div className="login-container">
+    <div className="login">
+    <div className="title-login">
+      <h1>Log in</h1>
+      </div>
+        <button onClick={handleGoogleLogin}>Login with google</button>
+        <button onClick={handleFacebookLogin}>Login with Facebook</button>
+        <button onClick={handleEmailLogin}>Login with e-mail</button>
       </div>
     </div>
   );
-};
+}
 
+export default Login;
 export default Login;
